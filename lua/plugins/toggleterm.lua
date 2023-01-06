@@ -1,7 +1,7 @@
 local Terminal  = require('toggleterm.terminal').Terminal
 
 require("toggleterm").setup({
-  open_mapping = '<A-2>',
+  open_mapping = '<A-t>',
   direction = 'horizontal',
   size=20,
 })
@@ -29,6 +29,4 @@ local lazygit = Terminal:new({
 function _lazygit_toggle()
   lazygit:toggle()
 end
-
-vim.keymap.set("n", "<leader>lg", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true, desc="Open Lazygit"})
 

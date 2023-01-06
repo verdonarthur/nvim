@@ -1,3 +1,4 @@
+-- Auto install packer
 local ensure_packer = function()
   local fn = vim.fn
   local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
@@ -11,6 +12,31 @@ end
 
 local packer_bootstrap = ensure_packer()
 
+-- Autocommand that reloads neovim whenever you save the plugins.lua file
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+  augroup end
+]])
+
+-- Use a protected call so we don't error out on first use
+local status_ok, packer = pcall(require, "packer")
+if not status_ok then
+  return
+end
+
+-- Have packer use a popup window
+packer.init({
+    display = {
+      open_fn = function()
+        return require('packer.util').float({ border = 'single' })
+      end
+    }
+  }
+)
+
+-- Plugins install
 return require('packer').startup(function(use)
   -- Plugin management
   use 'wbthomason/packer.nvim'
@@ -20,15 +46,18 @@ return require('packer').startup(function(use)
   use 'tpope/vim-sleuth'
   use 'editorconfig/editorconfig-vim'
 
+  -- Better tabs
+  use {'akinsho/bufferline.nvim', wants = 'nvim-web-devicons'}
+
   -- Fuzzy finder
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.0'
   }
 
   -- Language coloration syntaxic
-  use({ 'nvim-treesitter/nvim-treesitter' })
+  use 'nvim-treesitter/nvim-treesitter'
 
-  -- LSP (Language Server Protocol)
+  -- All LSP (Language Server Protocol) related plugins
   use {
     'VonHeikemen/lsp-zero.nvim',
     requires = {
@@ -48,22 +77,45 @@ return require('packer').startup(function(use)
       -- Snippets
       { 'L3MON4D3/LuaSnip' },
       { 'rafamadriz/friendly-snippets' },
+
+      -- Statusline
+      { 'nvim-lua/lsp-status.nvim' }
     }
   }
+
+  -- Linting
+  use({ -- Null-LS Use external formatters and linters
+      "jose-elias-alvarez/null-ls.nvim",
+      requires = {
+          "nvim-lua/plenary.nvim",
+      },
+  })
 
   -- File Manager
   use {
     'nvim-tree/nvim-tree.lua',
     requires = {
-      'nvim-tree/nvim-web-devicons', -- optional, for file icons
+      'nvim-tree/nvim-web-devicons',
     },
   }
 
+  -- Session Manager
+  use {
+    'rmagatti/auto-session',
+    config = function()
+      require("auto-session").setup {
+        log_level = "error",
+        auto_session_suppress_dirs = { "~/", "~/Downloads", "/"},
+        auto_session_root_dir = "~/.vim/sessions/",
+      }
+    end
+  }
+
   -- Terminal in nvim
-  use { "akinsho/toggleterm.nvim", tag = '*' }
+  use { 'akinsho/toggleterm.nvim', tag = '*' }
 
   -- Better marks
-  use({ 'chentoast/marks.nvim' })
+  use 'chentoast/marks.nvim'
 
   -- Plugin for edition
   use({ 'tpope/vim-surround' })
@@ -81,6 +133,8 @@ return require('packer').startup(function(use)
       require('Comment').setup()
     end
   }
+  use({ "folke/which-key.nvim" })
+  use({ 'mg979/vim-visual-multi' })
 
   -- Auto save
   use({ 'pocco81/auto-save.nvim' })
@@ -103,6 +157,7 @@ return require('packer').startup(function(use)
 
   -- Theming
   use { "catppuccin/nvim", as = "catppuccin" }
+  use { "folke/tokyonight.nvim", as = "tokyonight" }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
@@ -110,3 +165,5 @@ return require('packer').startup(function(use)
     require('packer').sync()
   end
 end)
+
+
