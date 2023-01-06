@@ -1,0 +1,23 @@
+# Docs
+https://grem1.in/post/nvim-en/
+https://www.lunarvim.org/docs/installation
+https://github.com/rockerBOO/awesome-neovim
+https://vim.rtorr.com/
+https://www.jetbrains.com/help/idea/searching-everywhere.html#search_all
+https://neovim.io/doc/user/intro.html#key-notation
+
+
+# Installed
+https://github.com/lukas-reineke/indent-blankline.nvim
+https://github.com/nvim-lualine/lualine.nvim
+https://github.com/nvim-pack/nvim-spectre
+https://github.com/Pocco81/auto-save.nvim
+https://github.com/chentoast/marks.nvim
+https://github.com/nvim-telescope/telescope.nvim#default-mappings
+https://github.com/nvim-tree/nvim-tree.lua/blob/master/doc/nvim-tree-lua.txt
+https://github.com/ahmedkhalf/project.nvim
+https://github.com/catppuccin/nvim
+
+# To check
+https://github.com/ggandor/lightspeed.nvim
+https://github.com/mg979/vim-visual-multi
