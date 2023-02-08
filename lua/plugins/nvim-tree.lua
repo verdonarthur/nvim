@@ -27,6 +27,13 @@ require("nvim-tree").setup({
   },
 
   actions = {
+    open_file = {
+      quit_on_open = true,
+    },
+
+    remove_file = {
+      close_window = true,
+    },
   },
 
   tab = {

@@ -6,7 +6,7 @@ require('bufferline').setup {
     numbers = "none",
 
     indicator = {
-      style = 'underline',
+      style = 'none',
     },
 
     buffer_close_icon = '',
@@ -21,8 +21,8 @@ require('bufferline').setup {
     --  - middle-click: delete buffer
     clickable = true,
 
-    tab_size = 15,
-    max_name_length = 10,
+    tab_size = 0,
+    max_name_length = 25,
     max_prefix_length = 10,
     -- whether or not tab names should be truncated
     truncate_names = true,
@@ -32,7 +32,7 @@ require('bufferline').setup {
           filetype = "NvimTree",
           text = "File Explorer",
           text_align = "left",
-          separator = true
+          separator = false
       }
     }
   }

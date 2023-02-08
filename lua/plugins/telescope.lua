@@ -1,21 +1,24 @@
-local telescope = require("telescope")
-local telescopeConfig = require("telescope.config")
+local telescope = require('telescope')
 
--- Clone the default Telescope configuration
-local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
-
--- I want to search in hidden/dot files.
-table.insert(vimgrep_arguments, "--hidden")
-table.insert(vimgrep_arguments, "--no-ignore")
-table.insert(vimgrep_arguments, "--glob")
-table.insert(vimgrep_arguments, "!**/.git/*")
+local globPattern = '!**/{.git,node_modules,vendor}/*'
 
 telescope.setup({
 	defaults = {
-		vimgrep_arguments = vimgrep_arguments,
+		vimgrep_arguments = {
+			"rg",
+			"--color=never",
+			"--no-heading",
+			"--with-filename",
+			"--line-number",
+			"--column",
+			"--smart-case",
+			"--hidden",
+			"--glob",
+			globPattern
+		},
 
 		prompt_prefix = "   ",
-		selection_caret = "  ",
+		selection_caret = "> ",
 		entry_prefix = "  ",
 		initial_mode = "insert",
 		selection_strategy = "reset",
@@ -41,7 +44,7 @@ telescope.setup({
 		border = {},
 		borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
 		color_devicons = true,
-		set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
+		set_env = { ["COLORTERM"] = "truecolor" },
 	},
 
 	pickers = {
@@ -50,13 +53,35 @@ telescope.setup({
 			theme = "dropdown",
 		},
 		find_files = {
-			find_command = { "rg", "--files", "--hidden", "--no-ignore", "--glob", "!**/.git/*" },
+			find_command = { "rg", "--files", "--hidden", "--no-ignore-vcs", "--glob", globPattern },
 		},
 		diagnostics = {
 			theme = "ivy",
 			previewer = false,
-		}
+		},
+		buffers = {
+			previewer = false,
+			layout_config = {
+				width = 80,
+			},
+		},
+		oldfiles = {
+			prompt_title = 'History',
+		},
+		lsp_references = {
+			previewer = false,
+		},
 	},
+
+	extensions = {
+		fzf = {
+		  fuzzy = true,                    -- false will only do exact matching
+		  override_generic_sorter = true,  -- override the generic sorter
+		  override_file_sorter = true,     -- override the file sorter
+		  case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+		}
+	}
 })
 
 require('telescope').load_extension('projects')
+require('telescope').load_extension('fzf')

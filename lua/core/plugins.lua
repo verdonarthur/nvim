@@ -50,45 +50,47 @@ return require('packer').startup(function(use)
   use {'akinsho/bufferline.nvim', wants = 'nvim-web-devicons'}
 
   -- Fuzzy finder
-  use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.0'
-  }
+  use { 'nvim-telescope/telescope.nvim' }
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
   -- Language coloration syntaxic
   use 'nvim-treesitter/nvim-treesitter'
 
   -- All LSP (Language Server Protocol) related plugins
   use {
-    'VonHeikemen/lsp-zero.nvim',
+    'neovim/nvim-lspconfig',
     requires = {
       -- LSP Support
-      { 'neovim/nvim-lspconfig' },
-      { 'williamboman/mason.nvim' },
-      { 'williamboman/mason-lspconfig.nvim' },
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
 
       -- Autocompletion
-      { 'hrsh7th/nvim-cmp' },
-      { 'hrsh7th/cmp-buffer' },
-      { 'hrsh7th/cmp-path' },
-      { 'saadparwaiz1/cmp_luasnip' },
-      { 'hrsh7th/cmp-nvim-lsp' },
-      { 'hrsh7th/cmp-nvim-lua' },
-
-      -- Snippets
-      { 'L3MON4D3/LuaSnip' },
-      { 'rafamadriz/friendly-snippets' },
+      'hrsh7th/nvim-cmp',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-nvim-lua',
+      'hrsh7th/cmp-nvim-lsp-signature-help',
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip',
+      'onsails/lspkind-nvim',
 
       -- Statusline
-      { 'nvim-lua/lsp-status.nvim' }
+      'nvim-lua/lsp-status.nvim'
     }
   }
 
   -- Linting
   use({ -- Null-LS Use external formatters and linters
-      "jose-elias-alvarez/null-ls.nvim",
+      'jose-elias-alvarez/null-ls.nvim',
       requires = {
-          "nvim-lua/plenary.nvim",
+          'nvim-lua/plenary.nvim',
       },
+  })
+
+  -- Git integration
+  use ({
+    'lewis6991/gitsigns.nvim',
   })
 
   -- File Manager
@@ -99,18 +101,6 @@ return require('packer').startup(function(use)
     },
   }
 
-  -- Session Manager
-  use {
-    'rmagatti/auto-session',
-    config = function()
-      require("auto-session").setup {
-        log_level = "error",
-        auto_session_suppress_dirs = { "~/", "~/Downloads", "/"},
-        auto_session_root_dir = "~/.vim/sessions/",
-      }
-    end
-  }
-
   -- Terminal in nvim
   use { 'akinsho/toggleterm.nvim', tag = '*' }
 
@@ -119,7 +109,20 @@ return require('packer').startup(function(use)
 
   -- Plugin for edition
   use({ 'tpope/vim-surround' })
+
+  use({ 'tpope/vim-repeat' })
+
+  use({ 'nelstrom/vim-visual-star-search' })
+
+  use({
+    'windwp/nvim-autopairs',
+    config = function()
+      require('nvim-autopairs').setup()
+    end,
+  })
+
   use 'windwp/nvim-spectre'
+
   use {
     'lukas-reineke/indent-blankline.nvim',
     config = function()
@@ -149,6 +152,13 @@ return require('packer').startup(function(use)
     end
   }
 
+  use {
+      'goolord/alpha-nvim',
+      config = function ()
+          require'alpha'.setup(require'alpha.themes.startify'.config)
+      end
+  }
+
   -- Statusline
   use {
     'nvim-lualine/lualine.nvim',
@@ -158,6 +168,11 @@ return require('packer').startup(function(use)
   -- Theming
   use { "catppuccin/nvim", as = "catppuccin" }
   use { "folke/tokyonight.nvim", as = "tokyonight" }
+  use { "sonph/onehalf", as = "onehalf", rtp='vim',
+    config = function()
+      vim.cmd[[colorscheme onehalflight]]
+    end
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

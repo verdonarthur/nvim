@@ -1,9 +1,8 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 -- File
 -- -- save
-vim.keymap.set("v", "<C-s>", "<cmd> w <CR>", { desc = 'save file' })
+vim.keymap.set("v", "<C-s>", ":w <CR>", { desc = 'save file' })
 
 -- Edition
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = 'Move Selected up' })
@@ -11,6 +10,7 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = 'Move Selected down' })
 vim.keymap.set("n", "<leader>§", '<Plug>(comment_toggle_linewise_current)',
   { desc = 'Toggle comment with line comment' })
 vim.keymap.set("v", "<leader>§", '<Plug>(comment_toggle_linewise_visual)', { desc = 'Toggle Comment line comment' })
+vim.keymap.set('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>', { desc = 'Show diagnostic'})
 
 -- Motion
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
@@ -24,10 +24,6 @@ vim.keymap.set("i", "<C-k>", "<up>")
 vim.keymap.set("i", "<C-l>", "<right>")
 
 -- Copy/Paste
-vim.keymap.set("x", "<leader>p", [["_dP]])
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-vim.keymap.set("n", "<leader>Y", [["+Y]])
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- Other
 vim.keymap.set("i", "<C-c>", "<Esc>")
@@ -40,9 +36,12 @@ vim.cmd [[
 
 -- Tab management
 vim.keymap.set("n", "<TAB>", "<Cmd>BufferLinePick<CR>", { desc = '' })
+vim.keymap.set("n", "<C-TAB>", "<cmd>BufferLineCycleNext<CR>", {desc='Switch to Next buffer'})
+vim.keymap.set("n", "<C-S-TAB>", "<cmd>BufferLineCyclePrev<CR>", {desc='Switch to Previous buffer'})
 
 -- Telescope
 vim.keymap.set('n', '<leader><leader>', require('telescope.builtin').builtin, { desc = 'Display Telescope' })
+vim.keymap.set('n', '<leader>re', require('telescope.builtin').resume, { desc = 'Resume Telescope' })
 vim.keymap.set('n', '<leader>sf', require('telescope.builtin').live_grep, { desc = 'Search string in current workspace' })
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = 'Search Files' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').git_files, { desc = 'Search in git files' })
