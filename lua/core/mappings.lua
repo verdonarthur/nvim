@@ -7,8 +7,7 @@ vim.keymap.set("v", "<C-s>", ":w <CR>", { desc = 'save file' })
 -- Edition
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = 'Move Selected up' })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = 'Move Selected down' })
-vim.keymap.set("n", "<leader>§", '<Plug>(comment_toggle_linewise_current)',
-  { desc = 'Toggle comment with line comment' })
+vim.keymap.set("n", "<leader>§", '<Plug>(comment_toggle_linewise_current)', { desc = 'Toggle comment with line comment' })
 vim.keymap.set("v", "<leader>§", '<Plug>(comment_toggle_linewise_visual)', { desc = 'Toggle Comment line comment' })
 vim.keymap.set('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>', { desc = 'Show diagnostic'})
 

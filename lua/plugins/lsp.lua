@@ -49,7 +49,7 @@ require('lspconfig').volar.setup({
     client.server_capabilities.documentRangeFormattingProvider = false
   end,
   capabilities = capabilities,
-  filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
 })
 
 require('lspconfig').lua_ls.setup({
@@ -58,5 +58,12 @@ require('lspconfig').lua_ls.setup({
   end,
   capabilities = capabilities,
   filetypes = { 'lua' },
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { 'vim' }
+      }
+    }
+  }
 })
 

@@ -55,6 +55,7 @@ return require('packer').startup(function(use)
 
   -- Language coloration syntaxic
   use 'nvim-treesitter/nvim-treesitter'
+  use 'jwalton512/vim-blade'
 
   -- All LSP (Language Server Protocol) related plugins
   use {
@@ -126,15 +127,12 @@ return require('packer').startup(function(use)
   use {
     'lukas-reineke/indent-blankline.nvim',
     config = function()
-      require("indent_blankline").setup {
-      }
+      require("indent_blankline").setup {}
     end
   }
   use {
     'numToStr/Comment.nvim',
-    config = function()
-      require('Comment').setup()
-    end
+    requires = {'JoosepAlviste/nvim-ts-context-commentstring'}
   }
   use({ "folke/which-key.nvim" })
   use({ 'mg979/vim-visual-multi' })
