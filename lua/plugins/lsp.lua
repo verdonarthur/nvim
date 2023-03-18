@@ -1,8 +1,6 @@
 require('mason').setup()
 require('mason-lspconfig').setup({ automatic_installation = true })
 
-vim.api.nvim_create_user_command('Format', vim.lsp.buf.format, {})
-
 vim.diagnostic.config({
   virtual_text = false,
   severity_sort = true,
@@ -10,7 +8,7 @@ vim.diagnostic.config({
     source = true,
     focus = false,
     format = function(diagnostic)
-      if diagnostic.user_data ~= nil and diagnostic.user_data.lsp.code ~= nil then
+      if diagnostic.user_data ~= nil and diagnostic.user_data.lsp ~= nil then
         return string.format('%s: %s', diagnostic.user_data.lsp.code, diagnostic.message)
       end
       return diagnostic.message
@@ -67,3 +65,4 @@ require('lspconfig').lua_ls.setup({
   }
 })
 
+require'lspconfig'.cssls.setup{}

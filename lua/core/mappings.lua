@@ -7,9 +7,12 @@ vim.keymap.set("v", "<C-s>", ":w <CR>", { desc = 'save file' })
 -- Edition
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = 'Move Selected up' })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = 'Move Selected down' })
-vim.keymap.set("n", "<leader>§", '<Plug>(comment_toggle_linewise_current)', { desc = 'Toggle comment with line comment' })
+vim.keymap.set("n", "<leader>§", '<Plug>(comment_toggle_linewise_current)',
+  { desc = 'Toggle comment with line comment' })
 vim.keymap.set("v", "<leader>§", '<Plug>(comment_toggle_linewise_visual)', { desc = 'Toggle Comment line comment' })
-vim.keymap.set('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>', { desc = 'Show diagnostic'})
+vim.keymap.set('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>', { desc = 'Show diagnostic' })
+vim.keymap.set('v', '<leader>fb', vim.lsp.buf.format, { desc = 'Format Current Selection' })
+vim.keymap.set('n', '<leader>fb', '<cmd>lua vim.lsp.buf.format()<CR>', { desc = 'Format Buffer' })
 
 -- Motion
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
@@ -35,8 +38,8 @@ vim.cmd [[
 
 -- Tab management
 vim.keymap.set("n", "<TAB>", "<Cmd>BufferLinePick<CR>", { desc = '' })
-vim.keymap.set("n", "<C-TAB>", "<cmd>BufferLineCycleNext<CR>", {desc='Switch to Next buffer'})
-vim.keymap.set("n", "<C-S-TAB>", "<cmd>BufferLineCyclePrev<CR>", {desc='Switch to Previous buffer'})
+vim.keymap.set("n", "<C-TAB>", "<cmd>BufferLineCycleNext<CR>", { desc = 'Switch to Next buffer' })
+vim.keymap.set("n", "<C-S-TAB>", "<cmd>BufferLineCyclePrev<CR>", { desc = 'Switch to Previous buffer' })
 
 -- Telescope
 vim.keymap.set('n', '<leader><leader>', require('telescope.builtin').builtin, { desc = 'Display Telescope' })

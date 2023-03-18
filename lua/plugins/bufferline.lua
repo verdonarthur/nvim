@@ -5,6 +5,8 @@ require('bufferline').setup {
 
     numbers = "none",
 
+    mode="tabs",
+
     indicator = {
       style = 'none',
     },
@@ -37,3 +39,5 @@ require('bufferline').setup {
     }
   }
 }
+
+require("scope").setup()

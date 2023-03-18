@@ -28,12 +28,12 @@ end
 
 -- Have packer use a popup window
 packer.init({
-    display = {
-      open_fn = function()
-        return require('packer.util').float({ border = 'single' })
-      end
-    }
+  display = {
+    open_fn = function()
+      return require('packer.util').float({ border = 'single' })
+    end
   }
+}
 )
 
 -- Plugins install
@@ -47,7 +47,7 @@ return require('packer').startup(function(use)
   use 'editorconfig/editorconfig-vim'
 
   -- Better tabs
-  use {'akinsho/bufferline.nvim', wants = 'nvim-web-devicons'}
+  use { 'akinsho/bufferline.nvim', wants = 'nvim-web-devicons', requires = { "tiagovla/scope.nvim" } }
 
   -- Fuzzy finder
   use { 'nvim-telescope/telescope.nvim' }
@@ -82,15 +82,16 @@ return require('packer').startup(function(use)
   }
 
   -- Linting
-  use({ -- Null-LS Use external formatters and linters
-      'jose-elias-alvarez/null-ls.nvim',
-      requires = {
-          'nvim-lua/plenary.nvim',
-      },
+  use({
+    -- Null-LS Use external formatters and linters
+    'jose-elias-alvarez/null-ls.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+    },
   })
 
   -- Git integration
-  use ({
+  use({
     'lewis6991/gitsigns.nvim',
   })
 
@@ -132,7 +133,7 @@ return require('packer').startup(function(use)
   }
   use {
     'numToStr/Comment.nvim',
-    requires = {'JoosepAlviste/nvim-ts-context-commentstring'}
+    requires = { 'JoosepAlviste/nvim-ts-context-commentstring' }
   }
   use({ "folke/which-key.nvim" })
   use({ 'mg979/vim-visual-multi' })
@@ -151,10 +152,10 @@ return require('packer').startup(function(use)
   }
 
   use {
-      'goolord/alpha-nvim',
-      config = function ()
-          require'alpha'.setup(require'alpha.themes.startify'.config)
-      end
+    'goolord/alpha-nvim',
+    config = function()
+      require 'alpha'.setup(require 'alpha.themes.startify'.config)
+    end
   }
 
   -- Statusline
@@ -166,11 +167,7 @@ return require('packer').startup(function(use)
   -- Theming
   use { "catppuccin/nvim", as = "catppuccin" }
   use { "folke/tokyonight.nvim", as = "tokyonight" }
-  use { "sonph/onehalf", as = "onehalf", rtp='vim',
-    config = function()
-      vim.cmd[[colorscheme onehalflight]]
-    end
-  }
+  use { "sonph/onehalf", as = "onehalf", rtp = 'vim' }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
@@ -178,5 +175,3 @@ return require('packer').startup(function(use)
     require('packer').sync()
   end
 end)
-
-

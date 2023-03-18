@@ -28,10 +28,11 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
-vim.opt.cmdheight = 1
-vim.opt.colorcolumn = '100'
+vim.opt.cmdheight = 0
+vim.opt.colorcolumn = '80'
 
 vim.cmd('set termguicolors')
 
 vim.opt.wildmode = 'longest:full,full'
 
+vim.cmd.colorscheme "tokyonight-day"
