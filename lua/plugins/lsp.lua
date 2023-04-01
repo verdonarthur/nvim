@@ -35,6 +35,7 @@ require('lspconfig').intelephense.setup({
     on_attach(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
+    vim.opt.autoindent = true
   end,
   capabilities = capabilities,
   filetypes = { 'php' },

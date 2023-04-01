@@ -50,7 +50,7 @@ return require('packer').startup(function(use)
   use { 'akinsho/bufferline.nvim', wants = 'nvim-web-devicons', requires = { "tiagovla/scope.nvim" } }
 
   -- Fuzzy finder
-  use { 'nvim-telescope/telescope.nvim' }
+  use { 'nvim-telescope/telescope.nvim', requires = { 'LukasPietzschmann/telescope-tabs' } }
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
   -- Language coloration syntaxic

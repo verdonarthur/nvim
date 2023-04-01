@@ -53,7 +53,7 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 vim.keymap.set('n', '<leader>sp', require('telescope').extensions.projects.projects, { desc = 'Search project' })
 vim.keymap.set('n', '<leader>so', require('telescope.builtin').oldfiles, { desc = 'Search Oldfiles' })
 vim.keymap.set('n', '<leader>cs', require('telescope.builtin').colorscheme, { desc = 'Change colorscheme' })
-vim.keymap.set('n', '<S-TAB>', require('telescope.builtin').buffers, { desc = 'Search buffers' })
+vim.keymap.set('n', '<S-TAB>', "<CMD>lua require('telescope-tabs').list_tabs()<CR>", { desc = 'Search buffers' })
 
 -- Vim configuration
 vim.keymap.set('n', '<leader>rc', ":source $MYVIMRC<CR>", { desc = "Reload config" })
