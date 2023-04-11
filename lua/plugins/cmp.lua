@@ -2,8 +2,15 @@ local cmp = require('cmp')
 local luasnip = require('luasnip')
 local lspkind = require('lspkind')
 
+table.unpack = table.unpack or unpack -- 5.1 compatibility
+
 local has_words_before = function()
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  local next_cursor = vim.api.nvim_win_get_cursor(0);
+  if next_cursor == nil or next(next_cursor) == nil then
+    return false
+  end
+
+  local line, col = table.unpack(next_cursor)
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 

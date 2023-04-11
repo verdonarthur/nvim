@@ -33,18 +33,17 @@ packer.init({
       return require('packer.util').float({ border = 'single' })
     end
   }
-}
-)
+})
 
 -- Plugins install
 return require('packer').startup(function(use)
   -- Plugin management
-  use 'wbthomason/packer.nvim'
+  use { 'wbthomason/packer.nvim' }
 
   -- General purpose
-  use 'nvim-lua/plenary.nvim'
-  use 'tpope/vim-sleuth'
-  use 'editorconfig/editorconfig-vim'
+  use { 'nvim-lua/plenary.nvim' }
+  use { 'tpope/vim-sleuth' }
+  use { 'editorconfig/editorconfig-vim' }
 
   -- Better tabs
   use { 'akinsho/bufferline.nvim', wants = 'nvim-web-devicons', requires = { "tiagovla/scope.nvim" } }
@@ -54,8 +53,8 @@ return require('packer').startup(function(use)
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
   -- Language coloration syntaxic
-  use 'nvim-treesitter/nvim-treesitter'
-  use 'jwalton512/vim-blade'
+  use { 'nvim-treesitter/nvim-treesitter' }
+  use { 'jwalton512/vim-blade' }
 
   -- All LSP (Language Server Protocol) related plugins
   use {
@@ -81,19 +80,23 @@ return require('packer').startup(function(use)
     }
   }
 
+  -- Code Actions
+  use {
+    'weilbith/nvim-code-action-menu',
+    cmd = 'CodeActionMenu',
+  }
+
   -- Linting
-  use({
+  use {
     -- Null-LS Use external formatters and linters
     'jose-elias-alvarez/null-ls.nvim',
     requires = {
       'nvim-lua/plenary.nvim',
     },
-  })
+  }
 
   -- Git integration
-  use({
-    'lewis6991/gitsigns.nvim',
-  })
+  use { 'lewis6991/gitsigns.nvim' }
 
   -- File Manager
   use {
@@ -107,56 +110,27 @@ return require('packer').startup(function(use)
   use { 'akinsho/toggleterm.nvim', tag = '*' }
 
   -- Better marks
-  use 'chentoast/marks.nvim'
+  use { 'chentoast/marks.nvim' }
 
   -- Plugin for edition
-  use({ 'tpope/vim-surround' })
-
-  use({ 'tpope/vim-repeat' })
-
-  use({ 'nelstrom/vim-visual-star-search' })
-
-  use({
-    'windwp/nvim-autopairs',
-    config = function()
-      require('nvim-autopairs').setup()
-    end,
-  })
-
-  use 'windwp/nvim-spectre'
-
-  use {
-    'lukas-reineke/indent-blankline.nvim',
-    config = function()
-      require("indent_blankline").setup {}
-    end
-  }
+  use { 'tpope/vim-surround' }
+  use { 'tpope/vim-repeat' }
+  use { 'nelstrom/vim-visual-star-search' }
+  use { 'windwp/nvim-autopairs' }
+  use { 'windwp/nvim-spectre' }
+  use { 'lukas-reineke/indent-blankline.nvim' }
   use {
     'numToStr/Comment.nvim',
     requires = { 'JoosepAlviste/nvim-ts-context-commentstring' }
   }
-  use({ "folke/which-key.nvim" })
-  use({ 'mg979/vim-visual-multi' })
+  use { "folke/which-key.nvim" }
+  use { 'mg979/vim-visual-multi' }
 
   -- Auto save
-  use({ 'pocco81/auto-save.nvim' })
+  use { 'pocco81/auto-save.nvim' }
 
   -- Project management
-  use {
-    "ahmedkhalf/project.nvim",
-    config = function()
-      require("project_nvim").setup {
-        manual_mode = true,
-      }
-    end
-  }
-
-  use {
-    'goolord/alpha-nvim',
-    config = function()
-      require 'alpha'.setup(require 'alpha.themes.startify'.config)
-    end
-  }
+  use { 'ahmedkhalf/project.nvim' }
 
   -- Statusline
   use {
@@ -165,9 +139,7 @@ return require('packer').startup(function(use)
   }
 
   -- Theming
-  use { "catppuccin/nvim", as = "catppuccin" }
   use { "folke/tokyonight.nvim", as = "tokyonight" }
-  use { "sonph/onehalf", as = "onehalf", rtp = 'vim' }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

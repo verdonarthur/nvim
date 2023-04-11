@@ -1,14 +1,15 @@
-local Terminal  = require('toggleterm.terminal').Terminal
+local toggleterm = require('toggleterm')
+local Terminal = require('toggleterm.terminal').Terminal
 
-require("toggleterm").setup({
+toggleterm.setup({
   open_mapping = '<A-t>',
-  direction = 'horizontal',
-  size=20,
+  direction = 'float',
+  border='single',
 })
 
 -- Lazygit Terminal
-local lazygit = Terminal:new({ 
-  cmd = "lazygit", 
+local lazygit = Terminal:new({
+  cmd = "lazygit",
   count = 5,
   dir = "git_dir",
   direction = "float",
@@ -18,7 +19,7 @@ local lazygit = Terminal:new({
   -- function to run on opening the terminal
   on_open = function(term)
     vim.cmd("startinsert!")
-    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", {noremap = true, silent = true})
+    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
   end,
   -- function to run on closing the terminal
   on_close = function(term)
@@ -29,4 +30,3 @@ local lazygit = Terminal:new({
 function _lazygit_toggle()
   lazygit:toggle()
 end
-

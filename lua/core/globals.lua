@@ -31,8 +31,9 @@ vim.opt.updatetime = 50
 vim.opt.cmdheight = 0
 vim.opt.colorcolumn = '80'
 
-vim.cmd('set termguicolors')
+vim.cmd[[ set termguicolors ]]
 
 vim.opt.wildmode = 'longest:full,full'
 
-vim.cmd.colorscheme "tokyonight-day"
+vim.cmd[[ colorscheme tokyonight ]]
+vim.o.bg='light'

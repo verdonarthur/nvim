@@ -1,5 +1,8 @@
 require('mason').setup()
-require('mason-lspconfig').setup({ automatic_installation = true })
+require('mason-lspconfig').setup({
+  automatic_installation = true,
+})
+local lspconfig = require('lspconfig')
 
 vim.diagnostic.config({
   virtual_text = false,
@@ -30,28 +33,27 @@ end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-require('lspconfig').intelephense.setup({
+lspconfig.intelephense.setup {
   on_attach = function(client, bufnr)
-    on_attach(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
-    vim.opt.autoindent = true
+    on_attach(client, bufnr)
   end,
   capabilities = capabilities,
   filetypes = { 'php' },
-})
+}
 
-require('lspconfig').volar.setup({
+lspconfig.volar.setup {
   on_attach = function(client, bufnr)
-    on_attach(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
+    on_attach(client, bufnr)
   end,
   capabilities = capabilities,
   filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
-})
+}
 
-require('lspconfig').lua_ls.setup({
+lspconfig.lua_ls.setup {
   on_attach = function(client, bufnr)
     on_attach(client, bufnr)
   end,
@@ -64,6 +66,8 @@ require('lspconfig').lua_ls.setup({
       }
     }
   }
-})
+}
 
-require'lspconfig'.cssls.setup{}
+lspconfig.svelte.setup {}
+lspconfig.cssls.setup {}
+lspconfig.tsserver.setup {}

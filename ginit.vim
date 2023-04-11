@@ -5,7 +5,7 @@ set mouse=a
 
 GuiFont FiraCode\ Nerd\ Font:h10
 GuiAdaptiveColor 1
-GuiLinespace 5 
+GuiLinespace 5
 GuiTabline 0
 GuiPopupmenu 1
 

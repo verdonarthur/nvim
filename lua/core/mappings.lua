@@ -13,6 +13,8 @@ vim.keymap.set("v", "<leader>§", '<Plug>(comment_toggle_linewise_visual)', { de
 vim.keymap.set('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>', { desc = 'Show diagnostic' })
 vim.keymap.set('v', '<leader>fb', vim.lsp.buf.format, { desc = 'Format Current Selection' })
 vim.keymap.set('n', '<leader>fb', '<cmd>lua vim.lsp.buf.format()<CR>', { desc = 'Format Buffer' })
+vim.keymap.set('n', '<leader>ca', ':CodeActionMenu<CR>', { desc = 'Code Action Menu' })
+vim.keymap.set('v', '<leader>ca', ':CodeActionMenu<CR>', { desc = 'Code Action Menu' })
 
 -- Motion
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
